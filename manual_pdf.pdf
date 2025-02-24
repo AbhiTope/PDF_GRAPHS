@@ -39,6 +39,16 @@ h                   % Close the path (connect last point to first)
 B                   % Fill and stroke
 Q                   % Restore state
 
+q                   % Save state
+0 1 0 RG            % Set fill color to GREEN
+2 w                 % Set line thickness
+100 700 m           % Move to start position (100,100)
+100 400 l           % Draw line to (200,300)
+200 400 l           % Draw line to (300,100)
+S                   % Fill and stroke
+Q                   % Restore state
+
+
 % DRAW RECTANGLE
 q                    % Save graphics state
 0.4 0 1 rg           % Set fill color to RED
