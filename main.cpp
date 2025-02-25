@@ -116,9 +116,6 @@ class line{
 
 };
 
-
-
-
 class axis{
 	private:
 		string content;
