@@ -208,8 +208,8 @@ class PDF{
 
 			// Object 3: Page
 			pdfFile << "3 0 obj\n"
-				"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 792 612] /Contents 4 0 R\n" //we can set page size here
-				"/Resources << /Font << /F1 5 0 R /XObject << /Im1 6 0 R >> >> >>\n"
+				"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 792 612] /Contents 4 0 R " //we can set page size here
+				"/Resources << /Font << /F1 5 0 R >> /XObject << /Im1 6 0 R >> >> >>\n"
 				"endobj\n";
 
 			// Object 4: Page Contents (Text and Image Placement)
@@ -251,6 +251,8 @@ class PDF{
 				y_axis.get() + "\n" +
 				x_axis.get() + "\n" +
 				grid_layout;
+
+			//pageContent = title.get();
 
 			pdfFile << "4 0 obj\n"
 				"<< /Length " << pageContent.length() << " >>\n"
