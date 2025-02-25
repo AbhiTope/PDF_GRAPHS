@@ -122,13 +122,15 @@ class line{
 class axis{
 	private:
 		string content;
+		char name;
 		string label;
 		int fontSize;
 		cordinate location;
 		color txtColor;
 	public:
-		axis(string lbl){
+		axis(string lbl, char an){
 			label = lbl;
+			name = an;
 			fontSize = 10;
 			location.x = 20;
 			location.y = 20;
@@ -149,44 +151,34 @@ class axis{
 			txtColor.b = b;
 		}
 		string get(){
-			/*
-			   % y-axis
-			   q                   % Save state
-			   0.28 0.55 0.47 RG            % Set fill color to GREEN
-			   1 w                 % Set line thickness
-			   50 50 m           % Move to start position (100,100)
-			   50 550 l           % Draw line to (200,300)
-			   S                   % Fill and stroke
-			   Q                   % Restore state
 
-			   % y-axis Label
-			   BT
-			   /F1 15 Tf        % First Line: Font = Helvetica, Size = 24
-			   0 0 1 rg         % First Line: Blue Color
-			   %100 550Td       % Move to (200,700)
-			   0 1 -1 0 15 300Tm
-			   (y-axis label) Tj
-			   ET
-			 */
 			line l;
 			l.start(50, 50);
-			l.end(50, 550);
+			//l.end(50, 550);
 			l.setWidth(1);
 			l.setColor(0, 0, 0);
 
 			textBox title(label);
 			title.setFontSize(15);
-			title.setLocation(15,300);
 			title.setColor(1, 0, 0);
-			title.rotate(90);
+			//title.setLocation(15,300);
+			//title.rotate(90);
+
+			if(name == 'y'){
+				l.end(50, 550);
+				title.setLocation(20, 300);
+				title.rotate(90);
+			}
+			else{
+				l.end(750, 50);
+				title.setLocation(350, 15);
+			}
 
 			string content = 
 				l.get() + title.get();
 
 			return content;
 		}
-
-
 };
 
 class PDF{
@@ -221,7 +213,6 @@ class PDF{
 				"endobj\n";
 
 			// Object 4: Page Contents (Text and Image Placement)
-			// Graph Title
 
 			textBox title("Graph Title");
 			title.setFontSize(15);
@@ -233,12 +224,33 @@ class PDF{
 			subTitle.setLocation(350,565);
 			subTitle.setColor(0, 0, 1);
 
-			axis y_axis("temp");
-		
+			axis y_axis("temperature", 'y');
+			axis x_axis("time", 'x');
+
+			string grid_layout = "";
+
+			line l;
+			for(int i = 60; i <= 750; i = i + 10){
+				l.start(i, 50);
+				l.end(i, 550);
+				l.setWidth(1);
+				l.setColor(0.9, 0.9, 0.9);
+				grid_layout += l.get();
+			}
+			for(int i = 60; i <= 550; i = i + 10){
+				l.start(50, i);
+				l.end(750, i);
+				l.setWidth(1);
+				l.setColor(0.9, 0.9, 0.9);
+				grid_layout += l.get();
+			}
+			
 			std::string pageContent = 
 				title.get() + "\n" +
 				subTitle.get() + "\n" +
-				y_axis.get();
+				y_axis.get() + "\n" +
+				x_axis.get() + "\n" +
+				grid_layout;
 
 			pdfFile << "4 0 obj\n"
 				"<< /Length " << pageContent.length() << " >>\n"
@@ -247,50 +259,6 @@ class PDF{
 				"endstream\n"
 				"endobj\n";
 
-				/*
-% Object 4: Page Content
-
-% y-axis
-q                   % Save state
-0.28 0.55 0.47 RG            % Set fill color to GREEN
-1 w                 % Set line thickness
-50 50 m           % Move to start position (100,100)
-50 550 l           % Draw line to (200,300)
-S                   % Fill and stroke
-Q                   % Restore state
-
-% y-axis Label
-BT
-/F1 15 Tf        % First Line: Font = Helvetica, Size = 24
-0 0 1 rg         % First Line: Blue Color
-%100 550Td       % Move to (200,700)
-0 1 -1 0 15 300Tm
-(y-axis label) Tj
-ET
-
-% x-axis
-q                   % Save state
-%0 1 0 RG            % Set fill color to GREEN
-0.28 0.55 0.47 RG            % Set fill color to GREEN
-1 w                 % Set line thickness
-50 50 m           % Move to start position (100,100)
-750 50 l           % Draw line to (200,300)
-S                   % Fill and stroke
-Q                   % Restore state
-
-% x-axis Label
-BT
-/F1 15 Tf        % First Line: Font = Helvetica, Size = 24
-0 0 1 rg         % First Line: Blue Color
-300 10Td       % Move to (200,700)
-(x-axis label) Tj
-ET
-
-
-endstream
-endobj
-
-		*/
 
 			// Object 5: Font (Helvetica)
 			pdfFile << "5 0 obj\n"
