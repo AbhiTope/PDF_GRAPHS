@@ -1,0 +1,8 @@
+
+
+for Windows
+g++ -shared -o MyLibrary.dll MyLibrary.cpp -Wl,--out-implib,MyLibrary.lib
+
+for linux
+g++ -shared -o MyLibrary.so MyLibrary.cpp -fPIC
+
