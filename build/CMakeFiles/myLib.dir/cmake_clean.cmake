@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/myLib.dir/src/CSV.cpp.o"
+  "CMakeFiles/myLib.dir/src/CSV.cpp.o.d"
   "CMakeFiles/myLib.dir/src/Wrapper.cpp.o"
   "CMakeFiles/myLib.dir/src/Wrapper.cpp.o.d"
   "libmyLib.pdb"

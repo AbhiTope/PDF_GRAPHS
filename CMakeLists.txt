@@ -6,6 +6,6 @@ set(CMAKE_CXX_STANDARD 17)
 
 include_directories(include)
 
-add_library(myLib SHARED src/Wrapper.cpp)
+add_library(myLib SHARED src/Wrapper.cpp src/CSV.cpp)
 
 add_executable(PDF_GRAPHS src/main.cpp src/CSV.cpp)

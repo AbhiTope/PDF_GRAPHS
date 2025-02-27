@@ -147,6 +147,7 @@ src/CSV.o: src/CSV.cpp.o
 
 # target to build an object file
 src/CSV.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/myLib.dir/build.make CMakeFiles/myLib.dir/src/CSV.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/PDF_GRAPHS.dir/build.make CMakeFiles/PDF_GRAPHS.dir/src/CSV.cpp.o
 .PHONY : src/CSV.cpp.o
 
@@ -155,6 +156,7 @@ src/CSV.i: src/CSV.cpp.i
 
 # target to preprocess a source file
 src/CSV.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/myLib.dir/build.make CMakeFiles/myLib.dir/src/CSV.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/PDF_GRAPHS.dir/build.make CMakeFiles/PDF_GRAPHS.dir/src/CSV.cpp.i
 .PHONY : src/CSV.cpp.i
 
@@ -163,6 +165,7 @@ src/CSV.s: src/CSV.cpp.s
 
 # target to generate assembly for a file
 src/CSV.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/myLib.dir/build.make CMakeFiles/myLib.dir/src/CSV.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/PDF_GRAPHS.dir/build.make CMakeFiles/PDF_GRAPHS.dir/src/CSV.cpp.s
 .PHONY : src/CSV.cpp.s
 
