@@ -15,6 +15,12 @@ struct color{
 	float b;
 };
 
+struct data{
+	string name;
+	int *val;
+	int n;
+};
+
 class textBox{
 	private:
 		string content;
@@ -177,6 +183,24 @@ class axis{
 			return content;
 		}
 };
+
+class graph{
+	private:
+		string content;
+		string data *gd;
+		int len;
+	public:
+		graph(struct data *d, int l){
+			gd = d;
+			len = l;
+		}
+		string get(){
+			for(int i = 0; i < len; i++){
+
+			}
+		}
+};
+
 
 class PDF{
 	private:
