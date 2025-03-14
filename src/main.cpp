@@ -1,5 +1,6 @@
 
 #include "CSV.h"
+#include "PDF.h"
 #include<iostream>
 #include<vector>
 
@@ -28,7 +29,10 @@ int main(){
 			cout << d << "||";
 		cout << endl;
 	}
-
 	cout << endl;
+
+	PDF pdf("test.pdf");
+	pdf.create();
+
 	return 0;
 }

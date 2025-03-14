@@ -1,4 +1,0 @@
-/home/dev_at/projects/PDF_GRAPHS/build/CMakeFiles/myLib.dir
-/home/dev_at/projects/PDF_GRAPHS/build/CMakeFiles/PDF_GRAPHS.dir
-/home/dev_at/projects/PDF_GRAPHS/build/CMakeFiles/edit_cache.dir
-/home/dev_at/projects/PDF_GRAPHS/build/CMakeFiles/rebuild_cache.dir
